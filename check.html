@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIDER</title>
+
+    <style>
+        body{
+            background-color: #555555;
+        }
+
+        img{
+            height: 400px;
+        }
+        
+    </style>
+</head>
+<body>
+   
+    <center>
+        <img src="" alt="">
+    </center>
+   
+    <center>
+        <button class="prev"><</button>
+        <button class="next">></button>
+    </center>
+<!-- 
+    <button onclick="start()">Start</button>
+    <button>Stop</button> -->
+    
+</body>
+</html>
+
+
+
+<script>
+
+    var Images = 
+    [
+        "https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1563355/pexels-photo-1563355.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1366957/pexels-photo-1366957.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/36762/scarlet-honeyeater-bird-red-feathers.jpg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1379636/pexels-photo-1379636.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1433052/pexels-photo-1433052.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1042423/pexels-photo-1042423.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/40896/larch-conifer-cone-branch-tree-40896.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1408221/pexels-photo-1408221.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/937980/pexels-photo-937980.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/163872/italy-cala-gonone-air-sky-163872.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1366913/pexels-photo-1366913.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1519088/pexels-photo-1519088.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/640781/pexels-photo-640781.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/87452/flowers-background-butterflies-beautiful-87452.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/2478248/pexels-photo-2478248.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/2093323/pexels-photo-2093323.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ];
+
+
+    var prev1 = document.querySelector(".prev");
+    var next1 = document.querySelector(".next");
+    var curentImg = 0;
+
+    var image = document.querySelector("img");
+    image.setAttribute("src",Images[curentImg])
+
+    prev1.addEventListener("click",function(){
+       curentImg--;
+
+       if(curentImg < 0)
+       {
+         curentImg = Images.length-1;
+       }
+       image.setAttribute("src",Images[curentImg])
+    })
+
+    next1.addEventListener("click",function(){
+       curentImg++;
+
+       if(curentImg >= Images.length)
+       {
+         curentImg = 0;
+       }
+       image.setAttribute("src",Images[curentImg])
+    })
+
+</script>
+
+
+
+
+<script>
+
+    //  Left/Right
+    
+    // var Slides = document.querySelectorAll("main > img");
+    // var count = 0;
+
+    // Slides.forEach((slide,index) =>{
+    //     slide.style.left = `${index * 100}%`
+    // })
+
+    // var SlideImage = () =>{
+    //     Slides.forEach((slide) =>{
+    //         slide.style.transform = `translateX(-${count * 100}%)`
+    //     })
+    // }
+
+    // var Prev = () =>{
+    //     count--;
+    //     SlideImage();
+    // }
+
+    // var Next = () =>{
+    //     count++;
+    //     SlideImage();
+    // }
+
+
+
+
+    //  Top/Bottom
+
+    // var Slides = document.querySelectorAll("main > img");
+    // var count = 0;
+
+    // Slides.forEach((slide,index) =>{
+    //     slide.style.bottom = `${index * 100}%`
+    // })
+
+    // var SlideImage = () =>{
+    //     Slides.forEach((slide) =>{
+    //         slide.style.transform = `translateY(${count * 100}%)`
+    //     })
+    // }
+
+    // var Prev = () =>{
+    //     count--;
+    //     SlideImage();
+    // }
+
+    // var Next = () =>{
+    //     count++;
+    //     SlideImage();
+    // }
+
+
+
+
+    //  Bottom/Tom
+
+    // var Slides = document.querySelectorAll("main > img");
+    // var count = 0;
+
+    // Slides.forEach((slide,index) =>{
+    //     slide.style.top = `${index * 100}%`
+    // })
+
+    // var SlideImage = () =>{
+    //     Slides.forEach((slide) =>{
+    //         slide.style.transform = `translateY(-${count * 100}%)`
+    //     })
+    // }
+
+    // var Prev = () =>{
+    //     count--;
+    //     if(SlideImage < 0)
+    //    {
+    //      SlideImage = Slides.length-1;
+    //    }
+    //     SlideImage();
+    // }
+
+    // var Next = () =>{
+    //     count++;
+    //     if(SlideImage >= Slides.length)
+    //    {
+    //      count = 0;
+    //    }
+    //     SlideImage();
+    // }
+
+
+
+
+//     var Slides = document.querySelectorAll("main > img");
+// var count = 0;
+
+// Slides.forEach((slide, index) => {
+//     slide.style.left = `${index * 100}%`;
+// });
+
+// var SlideImage = () => {
+//     Slides.forEach((slide) => {
+//         slide.style.transform = `translateX(-${count * 100}%)`;
+//     });
+// };
+
+// var Prev = () => {
+//     count--;
+//     if (count < 0) {
+//         count = Slides.length-1;
+//     }
+//     SlideImage();
+// };
+
+// var Next = () => {
+//     count++;
+//     if (count >= Slides.length) {
+//         count = 0;
+//     }
+//     SlideImage();
+// };
+
+</script>

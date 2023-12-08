@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TIMER</title>
+
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #333333;
+    }
+    .timer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 60px;
+    }
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      background-color: #4285f4;
+      color: #fff;
+    }
+    button:hover {
+      background-color: #3367d6;
+    }
+    .time {
+      font-size: 48px;
+    }
+
+    #resetBtn{
+      background-color: tomato;
+    }
+
+    #resetBtn:hover{
+      background-color: rgb(247, 40, 40);
+    }
+  </style>
+
+</head>
+<body>
+  <div class="timer">
+    <div class="input-group">
+      <input type="number" id="hoursInput" placeholder="Hours" min="0">
+      <input type="number" id="minutesInput" placeholder="Minutes" min="0" max="59">
+      <input type="number" id="secondsInput" placeholder="Seconds" min="0" max="59">
+    </div>
+    <div class="time">00:00:00</div>
+    <div class="buttons">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn" disabled>Pause</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+  </div>
+
+  <script>
+
+    var timerInterval;
+    var totalSeconds = 0;
+    var displayTime = document.querySelector('.time');
+    var hoursInput = document.getElementById('hoursInput');
+    var minutesInput = document.getElementById('minutesInput');
+    var secondsInput = document.getElementById('secondsInput');
+    var startBtn = document.getElementById('startBtn');
+    var pauseBtn = document.getElementById('pauseBtn');
+    var resetBtn = document.getElementById('resetBtn');
+
+    function startTimer() 
+    {
+      var hours = parseInt(hoursInput.value) || 0;
+      var minutes = parseInt(minutesInput.value) || 0;
+      var seconds = parseInt(secondsInput.value) || 0;
+      totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+      if (totalSeconds > 0) 
+      {
+        timerInterval = setInterval(updateTime, 1000);
+        startBtn.disabled = true;
+        pauseBtn.disabled = false;
+      }
+    }
+
+    function pauseTimer() 
+    {
+      clearInterval(timerInterval);
+      startBtn.disabled = false;
+      pauseBtn.disabled = true;
+    }
+
+    function resetTimer() 
+    {
+      clearInterval(timerInterval);
+      totalSeconds = 0;
+      displayTime.textContent = '00:00:00';
+      startBtn.disabled = false;
+      pauseBtn.disabled = true;
+    }
+
+    function updateTime() 
+    {
+      if (totalSeconds > 0) 
+      {
+        var hours = Math.floor(totalSeconds / 3600);
+        var minutes = Math.floor((totalSeconds % 3600) / 60);
+        var seconds = totalSeconds % 60;
+
+        displayTime.textContent = `${padTime(hours)}:${padTime(minutes)}:${padTime(seconds)}`;
+        totalSeconds--;
+
+        if (totalSeconds < 0) 
+        {
+          clearInterval(timerInterval);
+          displayTime.textContent = '00:00:00';
+          startBtn.disabled = false;
+          pauseBtn.disabled = true;
+        }
+      }
+    }
+
+    function padTime(time) 
+    {
+      return time < 10 ? `0${time}` : `${time}`;
+    }
+
+    startBtn.addEventListener('click', startTimer);
+    pauseBtn.addEventListener('click', pauseTimer);
+    resetBtn.addEventListener('click', resetTimer);
+
+  </script>
+</body>
+</html>
